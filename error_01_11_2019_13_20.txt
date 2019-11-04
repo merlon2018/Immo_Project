@@ -1,0 +1,41 @@
+with multiprocessing.Pool() as pool:
+...     pool.map(scrap_entire_webpage, range(1, total_number_of_pages+1))
+... 
+/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/generic.py:2130: UserWarning: The spaces in these column names will not be changed. In pandas versions < 0.14, spaces were converted to underscores.
+  dtype=dtype)
+/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/generic.py:2130: UserWarning: The spaces in these column names will not be changed. In pandas versions < 0.14, spaces were converted to underscores.
+  dtype=dtype)
+/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/generic.py:2130: UserWarning: The spaces in these column names will not be changed. In pandas versions < 0.14, spaces were converted to underscores.
+  dtype=dtype)
+/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/generic.py:2130: UserWarning: The spaces in these column names will not be changed. In pandas versions < 0.14, spaces were converted to underscores.
+  dtype=dtype)
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/multiprocessing/pool.py", line 121, in worker
+    result = (True, func(*args, **kwds))
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/multiprocessing/pool.py", line 44, in mapstar
+    return list(map(*args))
+  File "<stdin>", line 6, in scrap_entire_webpage
+  File "<stdin>", line 4, in loop_all_aparts
+  File "/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/soup_parsing.py", line 73, in scrap_one_ad
+    data_list = get_data_form_html(browserr)
+  File "/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/soup_parsing.py", line 37, in get_data_form_html
+    WebDriverWait(driverr,30).until(EC.presence_of_element_located((By.ID, "iw-propertypage-verticals")))
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/selenium/webdriver/support/wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/multiprocessing/pool.py", line 268, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/multiprocessing/pool.py", line 657, in get
+    raise self._value
+selenium.common.exceptions.TimeoutException: Message: 
+
+>>> 
