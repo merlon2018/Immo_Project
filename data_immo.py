@@ -88,17 +88,34 @@ total_number_of_pages = get_total_number_of_pages()
 #browser.execute_script("arguments[0].click();", list_of_aparts[0])
 #list_of_aparts[0].click()
 
+# def loop_all_aparts(list_of_aparts,browsers):
+#     try:
+#         for i in range(len(list_of_aparts)):
+#             browsers.execute_script("arguments[0].click();", list_of_aparts[i])
+#             soup_parsing.scrap_one_ad(browsers)
+#             t = random.uniform(2,3)
+#             browsers.implicitly_wait(t)
+#             browsers.back()
+#             ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
+#             wb_wait = WebDriverWait(browsers, 10, ignored_exceptions=ignored_exceptions)
+#             wb_wait.until(EC.presence_of_element_located((By.CLASS_NAME, "result-xl-content")))
+#             list_of_aparts = browsers.find_elements_by_class_name("result-xl-content")
+#     except:
+#         browsers.refresh()
+
+
 def loop_all_aparts(list_of_aparts,browsers):
-    for i in range(len(list_of_aparts)):
-        browsers.execute_script("arguments[0].click();", list_of_aparts[i])
-        soup_parsing.scrap_one_ad(browsers)
-        t = random.uniform(2,3)
+    while counter =< len(list_of_aparts):
+        xpath = "//div[@class='actions']//iw-propertypage-topbar-search-actions//div//span[@class='icon--arrow']"
+        t = random.uniform(1,2)
         browsers.implicitly_wait(t)
-        browsers.back()
-        ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
-        wb_wait = WebDriverWait(browsers, 10, ignored_exceptions=ignored_exceptions)
-        wb_wait.until(EC.presence_of_element_located((By.CLASS_NAME, "result-xl-content")))
-        list_of_aparts = browsers.find_elements_by_class_name("result-xl-content")
+        try:       
+            rightarrow = WebDriverWait(browser, 30).until(EC.visibility_of_element_located((By.XPATH, xpath)))
+            rightarrow.click() 
+        except Exception as e:
+            browsers.refresh() 
+            print(e)            
+        counter+=1
 
 
 def scrap_entire_webpage(pagenum):  
@@ -111,6 +128,7 @@ def scrap_entire_webpage(pagenum):
 
 time.sleep(2)
 with multiprocessing.Pool() as pool:
+    counter = 0
     pool.map(scrap_entire_webpage, range(1, total_number_of_pages+1))
 
 

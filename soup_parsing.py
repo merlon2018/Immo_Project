@@ -11,7 +11,18 @@ import numpy as np
 import pandas as pd
 import sqlite3
 import os
+import get_user_agent
+from selenium.webdriver.chrome.options import Options
 
+
+def initialize_browser(headless_state):
+    opts = Options()
+    opts.headless = headless_state           #set to True to navigate headless
+    user_agent = get_user_agent.get_agent()
+    opts.add_argument("user-agent=user_agent")           #set user agent imported from get_user_agent
+    #setting the web new_browser with the cretaed Options
+    browser = webdriver.Chrome("/Users/macbookpro_anas/Desktop/Machine-learning/drivers/chromedriver", options = opts)
+    return browser
 
 
 # Function that initialize dictionary with nan
@@ -61,8 +72,8 @@ def dump_dict_to_db(data_dict):
     index = [0]
     dict_to_df = pd.DataFrame(data_dict, index = index)
     #Transform dataframe to SQLite database
-    df_into_sql = dict_to_df.to_sql('RealEstate',
-    sqlite3.connect('/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/RealEstate.db'),
+    df_into_sql = dict_to_df.to_sql('BruxellesDB',
+    sqlite3.connect('/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/BruxellesDB.db'),
     if_exists='append',index=False)
 
 
@@ -74,6 +85,15 @@ def scrap_one_ad(browserr):
     dump_dict_to_db(filled_dict)
 
 
-readDB = pd.read_sql('SELECT * FROM RealEstate',
-sqlite3.connect('/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/RealEstate.db'))
+readDB = pd.read_sql('SELECT * FROM BruxellesDB',
+sqlite3.connect('/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/BruxellesDB.db'))
+
+# readDB1 = pd.read_sql('SELECT * FROM RealEstate',
+# sqlite3.connect('/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/RealEstate.db'))
+
+
+# if __name__ == '__main__':
+#     browsr = initialize_browser(False)
+#     browsr.get('https://www.immoweb.be/fr/annonce/appartement/a-vendre/uccle/1180/id7783221')
+#     scrap_one_ad(browsr)
 
