@@ -42,8 +42,9 @@ def read_all_tasks(conn, datab):
 #os.getcwd()
 
 
-# if __name__ == '__main__':
-#     #db_file = '/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/RealEstate.db'
-#     db_file = '/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/BruxellesDB.db'
-#     conn = create_connection(db_file)
-#     delete_all_tasks(conn, "BruxellesDB")
+if __name__ == '__main__':
+    #db_file = '/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/RealEstate.db'
+    input_DB = input('Enter the name of the database to delete : ')
+    db_file = f'/Users/macbookpro_anas/Desktop/Machine-learning/scrapper_immo/{input_DB}.db'
+    conn = create_connection(db_file)
+    delete_all_tasks(conn, f'{input_DB}')
