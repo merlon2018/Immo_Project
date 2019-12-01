@@ -108,11 +108,8 @@ def loop_all_aparts(pagenum):
         "result-xl-content")
     for i in range(len(list_of_aparts)):
         state = False
-        print(i)
         try:
-            print("a")
             browsers.execute_script("arguments[0].click();", list_of_aparts[i])
-            print("b")
             soup_parsing.scrap_one_ad(browsers)
             state = True
             t = random.uniform(2, 3)
@@ -126,7 +123,7 @@ def loop_all_aparts(pagenum):
                 (By.CLASS_NAME, "result-xl-content")))
             list_of_aparts = browsers.find_elements_by_class_name(
                 "result-xl-content")
-            if (i+1) % 2 == 0:
+            if (i+1) % 10 == 0:
                 browsers.quit()
                 browsers = initialize_browser(headless_state=False)
                 browsers.get(url+str(pagenum))
