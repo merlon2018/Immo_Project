@@ -1,0 +1,28 @@
+.idea/
+.ipynb_checkpoints/
+BruxellesDBV_test.db
+BruxellesDB_NEW 2.db
+BruxellesDB_NEW.db
+BruxellesDB_test.db
+DataTest.db
+ML_Project_BXL.ipynb
+RealEstate.db
+complete_df.csv
+complete_old_df.csv
+data_immo_main.py
+doodle/
+error_01_11_2019_13_20.txt
+immo_parsing.log
+immo_scaper.log
+list_proxies.txt
+list_proxies_VF.txt
+process failure.txt
+scrap_proxies.py
+snippets.txt
+ssh-keys
+ssh-keys.pub
+user_agents_list_backupfile
+utility.py
+vm_scripts/
+BruxellesDB.db
+BruxellesDBV2.db
